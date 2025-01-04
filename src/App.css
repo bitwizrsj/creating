@@ -1,0 +1,76 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+[data-scroll-container] {
+  overflow: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin: 20px 0 0;
+}
+
+/* Features Section */
+.features-section {
+  min-height: 100vh;
+  background: #0e2433;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feature {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.feature h2 {
+  font-size: 2rem;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #d0d0d0;
+}
+
+/* Footer Section */
+.footer-section {
+  height: 50vh;
+  background: #1b1b1b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-section h2 {
+  font-size: 2rem;
+}
+
+.footer-section p {
+  font-size: 1rem;
+  color: #ccc;
+}
