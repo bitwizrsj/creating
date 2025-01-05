@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <>
 
-      <div data-scroll-container ref={scrollContainerRef}>
+      <div data-scroll-container ref={scrollContainerRef} className='flex flex-col'>
         
         <Hero />
         <Clients />

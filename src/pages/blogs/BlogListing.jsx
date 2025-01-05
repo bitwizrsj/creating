@@ -1,116 +1,77 @@
 import React, { useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import LocomotiveScroll from 'locomotive-scroll';
+import { gsap } from 'gsap';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
+import blogs from './blogdata'; // Import blog data
 
 const BlogListing = () => {
-   const scrollContainerRef = useRef(null);
-  
-      useEffect(() => {
-        // Check if we're in the browser environment
-        if (typeof window === 'undefined') return;
-    
-        // Initialize Locomotive Scroll
-        const scroll = new LocomotiveScroll({
-          el: scrollContainerRef.current,
-          smooth: true,
-          multiplier: 1,
-          class: 'is-reveal',
-          lerp: 0.1,
-          tablet: {
-            smooth: true,
-            breakpoint: 768
-          },
-          smartphone: {
-            smooth: true
-          }
-        });
-    
-        // Update scroll on route change
-        const handleRouteChange = () => {
-          scroll.update();
-        };
-    
-        // Update scroll on window resize
-        const handleResize = () => {
-          scroll.update();
-        };
-    
-        window.addEventListener('resize', handleResize);
-    
-        // Clean up
-        return () => {
-          if (scroll) scroll.destroy();
-          window.removeEventListener('resize', handleResize);
-        };
-      }, []);
+  const scrollContainerRef = useRef(null);
+  const titleRef = useRef(null);
+  const navigate = useNavigate();
 
-  const blogs = [
-    {
-      id: 1,
-      category: "Web Development",
-      title: "Modern Web Architecture",
-      subtitle: "Building scalable applications with microservices",
-      image: "https://img.freepik.com/free-photo/woman-creating-design_23-2149073703.jpg",
-      description: "A deep dive into modern web architectures, exploring microservices, serverless computing, and cloud-native applications",
-      readTime: "8 min read",
-      date: "Jan 2025"
-    },
-    {
-      id: 2,
-      category: "Mobile Development",
-      title: "Cross-Platform Apps",
-      subtitle: "The future of mobile development with Flutter",
-      image: "https://img.freepik.com/free-photo/woman-creating-design_23-2149073703.jpg",
-      description: "Exploring the evolution of cross-platform development and how Flutter is revolutionizing mobile app creation",
-      readTime: "6 min read",
-      date: "Jan 2025"
-    },
-    {
-      id: 3,
-      category: "Artificial Intelligence",
-      title: "AI in Production",
-      subtitle: "Implementing LLMs in enterprise applications",
-      image: "https://img.freepik.com/free-photo/woman-creating-design_23-2149073703.jpg",
-      description: "Best practices for integrating large language models into production environments",
-      readTime: "10 min read",
-      date: "Jan 2025"
-    },
-    {
-      id: 4,
-      category: "DevOps",
-      title: "Modern CI/CD",
-      subtitle: "Streamlining deployment pipelines",
-      image: "https://img.freepik.com/free-photo/woman-creating-design_23-2149073703.jpg",
-      description: "A comprehensive guide to building efficient CI/CD pipelines using modern tools and practices",
-      readTime: "7 min read",
-      date: "Jan 2025"
-    }
-  ];
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const scroll = new LocomotiveScroll({
+      el: scrollContainerRef.current,
+      smooth: true,
+      multiplier: 1,
+      class: 'is-reveal',
+      lerp: 0.1,
+      tablet: { smooth: true, breakpoint: 768 },
+      smartphone: { smooth: true },
+    });
+
+    gsap.fromTo(
+      titleRef.current,
+      { opacity: 0, y: -50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+      }
+    );
+
+    const handleResize = () => scroll.update();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      if (scroll) scroll.destroy();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleViewCase = (id) => {
+    navigate(`/blogs/${id}`); // Navigate to the blog detail page
+  };
 
   return (
-    <div className="bg-gray-50" data-scroll-section ref={scrollContainerRef}>
+    <div className="bg-gray-900" data-scroll-section ref={scrollContainerRef}>
       {/* Header */}
-      <div className="bg-white py-16 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-light mb-4">
-            Development
+      <div className="py-20 px-6 md:px-12">
+        <div className="mx-auto mb-8 md:mb-16">
+          <h1 ref={titleRef} className="text-4xl md:text-6xl lg:text-8xl font-bold">
+            <span className="text-yellow-300">Blogs</span>
             <br />
-            <span className="text-gray-400">Insights</span>
+            <span className="text-white">Latest Articles & Insights</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Expert perspectives on web development, mobile apps, AI, and modern software practices
+          <p className="text-xl text-gray-400 max-w-2xl p-4">
+            Stay up to date with our latest posts on technology, trends, and in-depth discussions on web and mobile development.
           </p>
         </div>
       </div>
 
       {/* Blog Grid */}
-      <div className="px-6 md:px-12 py-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="px-6 md:px-12 py-16 min-h-screen">
+        <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {blogs.map((blog) => (
             <div
               key={blog.id}
-              className="group bg-white rounded-3xl overflow-hidden transition-transform hover:-translate-y-1 duration-300"
+              className="group bg-gray-950 rounded-3xl overflow-hidden transition-transform hover:-translate-y-1 duration-300"
             >
               {/* Image Container */}
               <div className="relative h-64 overflow-hidden">
@@ -125,20 +86,23 @@ const BlogListing = () => {
               {/* Content */}
               <div className="p-8">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-gray-500">
-                    {blog.category}
-                  </span>
+                  <span className="text-sm font-medium text-gray-500">{blog.category}</span>
                   <div className="flex items-center gap-4 text-sm text-gray-400">
                     <span>{blog.readTime}</span>
                     <span>{blog.date}</span>
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-medium mb-2">{blog.title}</h2>
-                <h3 className="text-lg text-gray-500 mb-4">{blog.subtitle}</h3>
-                <p className="text-gray-600 mb-6">{blog.description}</p>
+                <h2 className="text-2xl font-medium mb-2 text-white">
+                  <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
+                </h2>
+                <h3 className="text-lg text-gray-400 mb-4">{blog.subtitle}</h3>
+                <p className="text-gray-300 mb-6">{blog.description}</p>
 
-                <button className="flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all">
+                <button
+                  onClick={() => handleViewCase(blog.id)} // Handle the navigation on click
+                  className="flex items-center rounded-full border-2 p-3 px-4 border-yellow-300 gap-2 text-xl font-medium hover:gap-3 transition-all"
+                >
                   view case
                   <ArrowUpRight className="w-4 h-4" />
                 </button>

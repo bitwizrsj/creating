@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   const features = [
@@ -46,8 +50,25 @@ const Services = () => {
     }
   ];
 
+  useEffect(() => {
+    // GSAP ScrollTrigger to change background color
+    gsap.to(".services-container", {
+      backgroundColor: "#1a202c", // gray-950 color
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".services-container",
+        start: "top 80%", // Adjust based on where the effect should trigger
+        end: "bottom top",
+        toggleActions: "play none none reverse", // Play when entering, reverse when leaving
+      },
+    });
+  }, []);
+
   return (
-    <div className="max-w-[95rem] mx-auto px-4 py-32" data-scroll-section>
+    <div
+      className="services-container max-w-[95rem] mx-auto px-4 py-32 bg-white transition-colors duration-500"
+      data-scroll-section
+    >
       {/* Header Section */}
       <div className="mb-20">
         <h1
