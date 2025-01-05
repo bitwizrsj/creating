@@ -3,6 +3,7 @@ import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import TeamProfile from './TeamProfile';
 import Goals from './Goals';
+import Footer from '../../components/footer/Footer';
 
 const About = () => {
    const scrollContainerRef = useRef(null);
@@ -48,10 +49,11 @@ const About = () => {
   
 
   return (
-    <div className="bg-gray-50" data-scroll-section ref={scrollContainerRef}>
+    <div data-scroll-container ref={scrollContainerRef} className='flex flex-col'>
       
       <Goals />
       <TeamProfile />
+      <Footer />
     </div>
   );
 };

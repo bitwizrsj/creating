@@ -50,7 +50,7 @@ const Blogs = () => {
   return (
     <>
 
-      <div data-scroll-container ref={scrollContainerRef} className='min-h-screen'>
+<div data-scroll-container ref={scrollContainerRef} className='flex flex-col'>
         
         <BlogListing />
       </div>

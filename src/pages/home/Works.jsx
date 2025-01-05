@@ -28,7 +28,7 @@ const Works = () => {
     
 
   return (
-    <div className="bg-amber-900 rounded-3xl" data-scroll-section>
+    <div className="bg-amber-950 rounded-3xl" data-scroll-section>
       {/* Header */}
       <div className="px-6 md:px-12 py-8 border-b border-gray-200">
         <div className="flex items-center gap-3">

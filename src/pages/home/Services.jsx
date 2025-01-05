@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -50,25 +50,8 @@ const Services = () => {
     }
   ];
 
-  useEffect(() => {
-    // GSAP ScrollTrigger to change background color
-    gsap.to(".services-container", {
-      backgroundColor: "#1a202c", // gray-950 color
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".services-container",
-        start: "top 80%", // Adjust based on where the effect should trigger
-        end: "bottom top",
-        toggleActions: "play none none reverse", // Play when entering, reverse when leaving
-      },
-    });
-  }, []);
-
   return (
-    <div
-      className="services-container max-w-[95rem] mx-auto px-4 py-32 bg-white transition-colors duration-500"
-      data-scroll-section
-    >
+    <div className="max-w-[95rem] mx-auto px-4 py-32" data-scroll-section>
       {/* Header Section */}
       <div className="mb-20">
         <h1
@@ -83,42 +66,42 @@ const Services = () => {
 
       {/* Features Section */}
       <div className="space-y-24" data-scroll>
-        {features.map((feature) => (
-          <div key={feature.id}>
-            <div className="flex flex-col md:flex-row items-start md:items-center space-y-8 md:space-y-0 md:space-x-12">
-              {/* Image Container */}
-              <div className="rounded-3xl overflow-hidden">
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-96 h-64 object-cover rounded-3xl"
-                />
-              </div>
+  {features.map((feature) => (
+    <div 
+      key={feature.id} 
+      className="hover:bg-gray-950 hover:text-white text-gray-950 rounded-3xl p-8 transition-all duration-300"
+    >
+      <div className="flex flex-col md:flex-row items-start md:items-center space-y-8 md:space-y-0 md:space-x-12">
+        {/* Image Container */}
+        <div className="rounded-3xl overflow-hidden">
+          <img
+            src={feature.image}
+            alt={feature.title}
+            className="w-96 h-64 object-cover rounded-3xl"
+          />
+        </div>
 
-              {/* Content Container */}
-              <div className="w-full flex flex-col justify-center" data-scroll>
-                <div className="flex w-full justify-between items-center mb-10">
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={feature.logo}
-                      alt={`${feature.title} Logo`}
-                      className="w-10 h-10"
-                    />
-                    <h3 className="text-4xl text-gray-950 font-light">
-                      {feature.title}
-                    </h3>
-                  </div>
-                  <span className="text-xl text-gray-400">{feature.id}</span>
-                </div>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
+        {/* Content Container */}
+        <div className="w-full flex flex-col justify-center">
+          <div className="flex w-full justify-between items-center mb-10">
+            <div className="flex items-center space-x-4">
+              <img
+                src={feature.logo}
+                alt={`${feature.title} Logo`}
+                className="w-10 h-10"
+              />
+              <h3 className="text-4xl font-light">{feature.title}</h3>
             </div>
-            <hr className="bg-gray-950 mt-6" />
+            <span className="text-xl">{feature.id}</span>
           </div>
-        ))}
-      </div>
+          <p className="text-lg leading-relaxed">{feature.description}</p>
+        </div>
+        
+      </div><hr className='bg-black mt-4'></hr>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };

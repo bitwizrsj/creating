@@ -11,6 +11,7 @@ export default function Navbar() {
     { name: "Services", url: "/services" },
     { name: "Blogs", url: "/blogs" },
     { name: "Portfolio", url: "/portfolio" },
+    { name: "Careers", url: "/careers" },
   ];
 
   const handleClick = () => {
