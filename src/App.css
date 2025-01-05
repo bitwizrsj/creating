@@ -8,7 +8,11 @@ body {
 
 [data-scroll-container] {
   overflow: hidden;
+  position: relative;
 }
+
+
+
 
 /* Hero Section */
 .hero-section {

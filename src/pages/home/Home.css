@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+    [data-scroll-container] {
+      overflow: auto !important;
+    }
+  }
