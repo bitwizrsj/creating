@@ -7,6 +7,7 @@ import Blogs from './pages/blogs/Blogs';
 import BlogDetail from './pages/blogs/BlogDetail';
 import Layout from './components/layout/Layout';
 import Services from './pages/services/Services';
+import Portfolio from './pages/portfolio/Portfolio';
 import Careers from './pages/Careers/Careers';
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Route path="/blogs/:id" element={<BlogDetail />} />
           <Route path="/services" element={<Services />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+
         </Routes>
       </Layout>
     </Router>

@@ -1,107 +1,122 @@
-import React from 'react';
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 const Services = () => {
-  const features = [
+  const [hoveredService, setHoveredService] = useState(null);
+
+  const services = [
     {
-      id: '01',
-      title: 'App Development',
-      description: 'We create scalable, high-performing mobile and web applications tailored to meet your business needs. Our apps ensure seamless user experiences and optimized performance.',
-      image: 'https://img.freepik.com/free-photo/programmer-working-with-program-code-laptop-software-development-it_169016-22257.jpg',
-      logo: 'https://img.icons8.com/color/96/code.png'
+      id: 1,
+      name: "Web Design",
+      image: "https://images.unsplash.com/photo-1556740720-0cd6a35e68ba?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDJ8fHdlYiUyMGRlc2lnbnxlbnwwfHx8fDE2NzgyMjM1MzE&ixlib=rb-1.2.1&q=80&w=1080",
+      description: "Creating beautiful, responsive websites"
     },
     {
-      id: '02',
-      title: 'UI/UX Design',
-      description: 'Our designs prioritize user-centric experiences, blending aesthetics with functionality to deliver interfaces that are visually appealing and intuitive.',
-      image: 'https://img.freepik.com/free-photo/woman-creating-design_23-2149073703.jpg',
-      logo: 'https://img.icons8.com/color/96/design.png'
+      id: 2,
+      name: "Mobile Development",
+      image: "https://images.unsplash.com/photo-1602074414559-95c9a8c5b015?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDk3fHxtb2JpbGUgYXBwbGljYXRpb25zfGVufDB8fHx8fDE2NzgyMjM2NjQ&ixlib=rb-1.2.1&q=80&w=1080",
+      description: "Native iOS and Android applications"
     },
     {
-      id: '03',
-      title: 'Logo Making',
-      description: 'We design memorable and impactful logos that represent your brand’s identity and resonate with your target audience.',
-      image: 'https://img.freepik.com/free-photo/graphic-designer-working-logo-design_23-2148793367.jpg',
-      logo: 'https://img.icons8.com/color/96/paint-palette.png'
+      id: 3,
+      name: "3D Animation",
+      image: "https://images.unsplash.com/photo-1556742045-e81d7021f12b?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDkxfHwzZCUyMGFuaW1hdGlvbnxlbnwwfHx8fDE2NzgyMjM5NDE&ixlib=rb-1.2.1&q=80&w=1080",
+      description: "Immersive 3D experiences"
     },
     {
-      id: '04',
-      title: 'Data Science Solutions',
-      description: 'Our data science services provide actionable insights, leveraging machine learning and advanced analytics to solve complex business problems.',
-      image: 'https://img.freepik.com/free-photo/data-analytics-concept-business-intelligence-bi-make-business-decisions-data-dashboard-with-key-performance-indicators-kpi_53876-124747.jpg',
-      logo: 'https://img.icons8.com/color/96/artificial-intelligence.png'
+      id: 4,
+      name: "UI/UX Design",
+      image: "https://images.unsplash.com/photo-1611740540501-ec9b5f9a989b?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDk4fHxlYXV4JTIwZGVzaWdufGVufDB8fHx8fDE2NzgyMjQ0MDc&ixlib=rb-1.2.1&q=80&w=1080",
+      description: "User-centered digital experiences"
     },
     {
-      id: '05',
-      title: 'Video Editing',
-      description: 'We craft professional videos with seamless transitions, dynamic effects, and captivating storytelling to engage your audience.',
-      image: 'https://img.freepik.com/free-photo/man-editing-video-software-with-timeline-professional-post-production-studio-editing-movie-creative-content-digital-multimedia-artist_482257-40961.jpg',
-      logo: 'https://img.icons8.com/color/96/video-editing.png'
-    },
-    {
-      id: '06',
-      title: 'Digital Marketing',
-      description: 'Our marketing strategies drive engagement and growth through targeted campaigns, SEO, and social media optimization.',
-      image: 'https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg',
-      logo: 'https://img.icons8.com/color/96/marketing.png'
+      id: 5,
+      name: "Backend Services",
+      image: "https://images.unsplash.com/photo-1611078480652-c0a53758adf0?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDJ8fGJhY2tncm91bmQlMjBzZXJ2aWNlfGVufDB8fHx8fDE2NzgyMjM5MzA&ixlib=rb-1.2.1&q=80&w=1080",
+      description: "Scalable server solutions"
     }
   ];
 
   return (
-    <div className="max-w-[95rem] mx-auto px-4 py-32" data-scroll-section>
-      {/* Header Section */}
-      <div className="mb-20">
-        <h1
-          className="text-5xl text-gray-950 md:text-7xl font-light leading-tight"
-          data-scroll
-          data-scroll-speed="1"
-        >
-          not just websites,
-          <hr className="bg-gray-950 mt-12"></hr>
-        </h1>
+    <div className="relative min-h-screen bg-white overflow-hidden" data-scroll-section>
+      {/* Service List Container */}
+      <div className="max-w-4xl mx-auto px-8 py-16">
+        {services.map((service, index) => (
+          <motion.div
+            key={service.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            onMouseEnter={() => setHoveredService(service)}
+            onMouseLeave={() => setHoveredService(null)}
+            className="group border-t border-gray-300 last:border-b"
+          >
+            <div className="py-8 flex justify-between items-center cursor-pointer">
+              <div className="flex items-center gap-6">
+                <span className="text-sm text-black font-medium">
+                  {String(service.id).padStart(2, '0')}
+                </span>
+                <h3 className="text-2xl font-medium tracking-wide text-black">
+                  {service.name}
+                </h3>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ 
+                  opacity: hoveredService?.id === service.id ? 1 : 0,
+                  x: hoveredService?.id === service.id ? 0 : -10
+                }}
+                className="text-black"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </motion.div>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      {/* Features Section */}
-      <div className="space-y-24" data-scroll>
-  {features.map((feature) => (
-    <div 
-      key={feature.id} 
-      className="hover:bg-gray-950 hover:text-white text-gray-950 rounded-3xl p-8 transition-all duration-300"
-    >
-      <div className="flex flex-col md:flex-row items-start md:items-center space-y-8 md:space-y-0 md:space-x-12">
-        {/* Image Container */}
-        <div className="rounded-3xl overflow-hidden">
-          <img
-            src={feature.image}
-            alt={feature.title}
-            className="w-96 h-64 object-cover rounded-3xl"
-          />
-        </div>
-
-        {/* Content Container */}
-        <div className="w-full flex flex-col justify-center">
-          <div className="flex w-full justify-between items-center mb-10">
-            <div className="flex items-center space-x-4">
-              <img
-                src={feature.logo}
-                alt={`${feature.title} Logo`}
-                className="w-10 h-10"
+      {/* Floating Image */}
+      <AnimatePresence>
+        {hoveredService && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="fixed top-1/2 left-1/2 w-72 h-96 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+            style={{ 
+              perspective: "1000px",
+              transformStyle: "preserve-3d"
+            }}
+          >
+            <div className="relative w-full h-full overflow-hidden rounded-lg shadow-2xl">
+              <motion.img
+                src={hoveredService.image}
+                alt={hoveredService.name}
+                className="w-full h-full object-cover"
+                initial={{ scale: 1.2 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.8 }}
               />
-              <h3 className="text-4xl font-light">{feature.title}</h3>
+              <div className="absolute inset-0 bg-black/10" />
             </div>
-            <span className="text-xl">{feature.id}</span>
-          </div>
-          <p className="text-lg leading-relaxed">{feature.description}</p>
-        </div>
-        
-      </div><hr className='bg-black mt-4'></hr>
-    </div>
-  ))}
-</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
+      {/* Background Overlay */}
+      <AnimatePresence>
+        {hoveredService && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/5 pointer-events-none"
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

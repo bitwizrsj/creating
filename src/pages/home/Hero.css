@@ -1,0 +1,18 @@
+/* Ensure the split characters are inline and visible */
+.section__title__char {
+    display: inline-block;
+    opacity: 1; /* Make sure characters are visible */
+    transform: translateY(0); /* Ensure the characters are in their correct position */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  /* Style for the sentences to be inline */
+  .section__title__sentence {
+    display: inline-block;
+  }
+  
+  /* You might need to adjust the root font size to avoid oversized text */
+  .hero h1 {
+    font-size: 3rem; /* Adjust to suit the design */
+  }
+  

@@ -3,9 +3,9 @@ import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 
 import Footer from '../../components/footer/Footer';
-import ServicesPage from './ServicesPage';
+import CareersPage from './CareersPage';
 
-const Services = () => {
+const Careers = () => {
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Services = () => {
   return (
     <div data-scroll-container ref={scrollContainerRef} className='flex flex-col ' data-scroll-section>
       {/* ServicesPage content */}
-      <ServicesPage data-scroll-section/>
+      <CareersPage data-scroll-section/>
 
       {/* Footer at the bottom */}
 <Footer />
@@ -58,4 +58,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Careers;
