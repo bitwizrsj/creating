@@ -72,7 +72,7 @@ const TestimonialSlider = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-24 px-6 md:px-12" data-scroll-section>
+    <div className="bg-gray-50 py-16 px-6 md:px-12" data-scroll-section>
       {/* Section Header */}
       <div className="mb-16">
         <div className="flex items-center gap-2">

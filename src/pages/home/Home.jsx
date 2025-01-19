@@ -8,6 +8,8 @@ import Services from './Services';
 import Works from './Works';
 import TestimonialSlider from './TestimonialSlider';
 import Footer from '../../components/footer/Footer';
+import CareersSection from './Job';
+
 
 const Home = () => {
     const scrollContainerRef = useRef(null);
@@ -99,6 +101,7 @@ const Home = () => {
             <Services />
             <Works />
             <TestimonialSlider />
+            <CareersSection />
             <Footer />
         </div>
     );

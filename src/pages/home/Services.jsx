@@ -1,124 +1,196 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { TabletSmartphone, Globe, Palette, ShoppingCart, Search, Megaphone, Server, Settings, Activity } from "lucide-react";
 
-const Services = () => {
-  const [hoveredService, setHoveredService] = useState(null);
-
+const ServicesLayout = () => {
+  // Predefined positions for services
   const services = [
-    {
-      id: 1,
-      name: "Web Design",
-      image: "https://images.unsplash.com/photo-1556740720-0cd6a35e68ba?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDJ8fHdlYiUyMGRlc2lnbnxlbnwwfHx8fDE2NzgyMjM1MzE&ixlib=rb-1.2.1&q=80&w=1080",
-      description: "Creating beautiful, responsive websites"
+    { 
+      name: "App Development", 
+      icon: TabletSmartphone,
+      x: 20, // Left side
+      y: 30,
+      delay: 0.2
     },
-    {
-      id: 2,
-      name: "Mobile Development",
-      image: "https://images.unsplash.com/photo-1602074414559-95c9a8c5b015?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDk3fHxtb2JpbGUgYXBwbGljYXRpb25zfGVufDB8fHx8fDE2NzgyMjM2NjQ&ixlib=rb-1.2.1&q=80&w=1080",
-      description: "Native iOS and Android applications"
+    { 
+      name: "Website Development", 
+      icon: Globe,
+      x: 75, // Right side
+      y: 25,
+      delay: 0.4
     },
-    {
-      id: 3,
-      name: "3D Animation",
-      image: "https://images.unsplash.com/photo-1556742045-e81d7021f12b?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDkxfHwzZCUyMGFuaW1hdGlvbnxlbnwwfHx8fDE2NzgyMjM5NDE&ixlib=rb-1.2.1&q=80&w=1080",
-      description: "Immersive 3D experiences"
+    { 
+      name: "UI/UX Design", 
+      icon: Palette,
+      x: 30, // Left-center
+      y: 65,
+      delay: 0.6
     },
-    {
-      id: 4,
-      name: "UI/UX Design",
-      image: "https://images.unsplash.com/photo-1611740540501-ec9b5f9a989b?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDk4fHxlYXV4JTIwZGVzaWdufGVufDB8fHx8fDE2NzgyMjQ0MDc&ixlib=rb-1.2.1&q=80&w=1080",
-      description: "User-centered digital experiences"
+    { 
+      name: "E-Commerce Solutions", 
+      icon: ShoppingCart,
+      x: 65, // Right-center
+      y: 70,
+      delay: 0.8
     },
-    {
-      id: 5,
-      name: "Backend Services",
-      image: "https://images.unsplash.com/photo-1611078480652-c0a53758adf0?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg0OXwwfDF8c2VhcmNofDJ8fGJhY2tncm91bmQlMjBzZXJ2aWNlfGVufDB8fHx8fDE2NzgyMjM5MzA&ixlib=rb-1.2.1&q=80&w=1080",
-      description: "Scalable server solutions"
+    { 
+      name: "SEO Optimization", 
+      icon: Search,
+      x: 50, // Center
+      y: 45,
+      delay: 1.0
+    },
+    { 
+      name: "Digital Marketing", 
+      icon: Megaphone,
+      x: 85, // Far right
+      y: 50,
+      delay: 1.2
+    },
+    { 
+      name: "Web Hosting", 
+      icon: Server,
+      x: 15, // Far left
+      y: 50,
+      delay: 1.4
+    },
+    { 
+      name: "Maintenance & Support", 
+      icon: Settings,
+      x: 45, // Center-left
+      y: 20,
+      delay: 1.6
     }
   ];
 
+  // Generate random stars
+  const stars = Array(100).fill(0).map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 1,
+    opacity: Math.random() * 0.8 + 0.2,
+  }));
+
   return (
-    <div className="relative min-h-screen bg-white overflow-hidden" data-scroll-section>
-      {/* Service List Container */}
-      <div className="max-w-4xl mx-auto px-8 py-16">
-        {services.map((service, index) => (
-          <motion.div
-            key={service.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            onMouseEnter={() => setHoveredService(service)}
-            onMouseLeave={() => setHoveredService(null)}
-            className="group border-t border-gray-300 last:border-b"
-          >
-            <div className="py-8 flex justify-between items-center cursor-pointer">
-              <div className="flex items-center gap-6">
-                <span className="text-sm text-black font-medium">
-                  {String(service.id).padStart(2, '0')}
-                </span>
-                <h3 className="text-2xl font-medium tracking-wide text-black">
-                  {service.name}
-                </h3>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ 
-                  opacity: hoveredService?.id === service.id ? 1 : 0,
-                  x: hoveredService?.id === service.id ? 0 : -10
-                }}
-                className="text-black"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </motion.div>
-            </div>
-          </motion.div>
+    <div className="w-full h-screen bg-gray-950 overflow-hidden relative" data-scroll-section>
+      {/* Stars Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute bg-white rounded-full"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+            }}
+          />
         ))}
       </div>
 
-      {/* Floating Image */}
-      <AnimatePresence>
-        {hoveredService && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed top-1/2 left-1/2 w-72 h-96 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
-            style={{ 
-              perspective: "1000px",
-              transformStyle: "preserve-3d"
-            }}
-          >
-            <div className="relative w-full h-full overflow-hidden rounded-lg shadow-2xl">
-              <motion.img
-                src={hoveredService.image}
-                alt={hoveredService.name}
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.2 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.8 }}
-              />
-              <div className="absolute inset-0 bg-black/10" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Heading */}
+      <div className="absolute top-8 p-5 text-7xl text-gray-600 hover:text-gray-50 font-semibold">
+        <h1>Our Services</h1>
+      </div>
 
-      {/* Background Overlay */}
-      <AnimatePresence>
-        {hoveredService && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/5 pointer-events-none"
+      {/* Services Container */}
+      <div className="relative w-full h-full">
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          
+          return (
+            <div
+              key={index}
+              className="absolute w-32 h-16 bg-gray-800/90 border border-blue-500/30 rounded-lg 
+                         shadow-lg backdrop-blur-sm flex gap-2 p-2 items-center justify-center 
+                         transition-all duration-500 group transform hover:scale-105"
+              style={{
+                left: `${service.x}%`,
+                top: `${service.y}%`,
+                transform: 'translate(-50%, -50%)',
+                animation: `float 3s ease-in-out infinite ${service.delay}s`,
+                opacity: 0,
+                animationFillMode: 'forwards',
+                animationName: 'fadeIn, float',
+                animationDuration: '0.5s, 3s',
+                animationDelay: `${service.delay}s, ${service.delay}s`,
+                animationTimingFunction: 'ease-out, ease-in-out',
+                animationIterationCount: '1, infinite'
+              }}
+            >
+              <Icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 mb-1 transition-colors duration-300" />
+              <span className="text-sm text-gray-300 group-hover:text-white transition-all duration-300">
+                {service.name}
+              </span>
+            </div>
+          );
+        })}
+
+        {/* Connecting Lines */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
+              <stop offset="50%" stopColor="rgba(59, 130, 246, 0.2)" />
+              <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+            </linearGradient>
+          </defs>
+          {services.map((service, i) => 
+            services.slice(i + 1).map((otherService, j) => (
+              <line
+                key={`${i}-${j}`}
+                x1={`${service.x}%`}
+                y1={`${service.y}%`}
+                x2={`${otherService.x}%`}
+                y2={`${otherService.y}%`}
+                stroke="url(#lineGradient)"
+                strokeWidth="1"
+                opacity="0.3"
+              />
+            ))
+          )}
+        </svg>
+
+        {/* Ambient Light Effects */}
+        {services.map((service, index) => (
+          <div
+            key={`glow-${index}`}
+            className="absolute w-48 h-48 rounded-full opacity-10"
+            style={{
+              left: `${service.x}%`,
+              top: `${service.y}%`,
+              transform: 'translate(-50%, -50%)',
+              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 70%)',
+            }}
           />
-        )}
-      </AnimatePresence>
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translate(-50%, -50%) translateY(0px);
+          }
+          50% {
+            transform: translate(-50%, -50%) translateY(-10px);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+      `}</style>
     </div>
   );
 };
 
-export default Services;
+export default ServicesLayout;

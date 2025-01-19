@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import Button from "../common/Button";
+import logo from "../../assets/logo.png";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,8 +24,12 @@ export default function Navbar() {
     <>
       <div className="h-20 bg-slate-50 flex items-center justify-between px-6 lg:px-12 shadow-md">
         {/* Brand */}
-        <h1 className="text-gray-950 font-bold text-3xl font-sans">Creating</h1>
-
+        <div className="flex items-center space-x-2">
+          <img src={logo} alt="logo" className="w-10 "></img>
+          <h1 className="text-gray-950 font-bold text-2xl font-sans hidden md:block tracking-tighter">
+            HyperNex Technologies
+          </h1>
+        </div>
         {/* Desktop Menu */}
         <div className="hidden lg:flex space-x-6">
           {navbarLinks.map((link, index) => (
@@ -39,12 +45,14 @@ export default function Navbar() {
 
         {/* Button */}
         <div className="hidden lg:flex">
-          <Button className="flex items-center" onClick={handleClick}>
-            discuss the project
-            <span className="p-2 text-yellow-500 text-2xl transition-transform duration-300 ease-in-out hover:rotate-45">
-              <ArrowUpRight />
-            </span>
-          </Button>
+          <Link to="/discuss"> {/* Wrap the button with Link */}
+            <Button className="flex items-center h-12 rounded-full" onClick={handleClick}>
+              discuss the project
+              <span className="p-2 text-yellow-500 text-2xl transition-transform duration-300 ease-in-out hover:rotate-45">
+                <ArrowUpRight />
+              </span>
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Icon */}
@@ -70,12 +78,13 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button className="flex items-center" onClick={handleClick}>
-            discuss the project
-            <span className="p-2 text-yellow-500 text-2xl transition-transform duration-300 ease-in-out hover:rotate-45">
-              <ArrowUpRight />
-            </span>
-          </Button>
+          <Link to="/discuss">
+            <Button className="flex items-center h-12 rounded-full" onClick={handleClick}>
+              discuss the project
+              <span className="p-2 text-yellow-500 text-2xl transition-transform duration-300 ease-in-out hover:rotate-45">
+                <ArrowUpRight />
+              </span>
+            </Button></Link>
         </div>
       )}
     </>

@@ -9,6 +9,7 @@ import Layout from './components/layout/Layout';
 import Services from './pages/services/Services';
 import Portfolio from './pages/portfolio/Portfolio';
 import Careers from './pages/Careers/Careers';
+import ProjectDiscussion from './pages/discuss/ProjectDiscussion';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/discuss" element={<ProjectDiscussion />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
 
         </Routes>
       </Layout>

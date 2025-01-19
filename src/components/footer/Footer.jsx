@@ -11,9 +11,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: "Instagram", url: "#" },
-    { name: "Twitter", url: "#" },
-    { name: "LinkedIn", url: "#" },
+    { name: "Instagram", url: "https://www.instagram.com/hype.rnextechnologies/" },
+    { name: "Twitter", url: "https://x.com/hyperNexTech" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/company/hypernex-technologies-llc/?viewAsMember=true" },
     { name: "Dribbble", url: "#" }
   ];
 
@@ -23,7 +23,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Section */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Creating</h2>
+            <h2 className="text-2xl font-bold">HyperNex Technologies</h2>
             <p className="text-gray-400 max-w-xs">
               We create digital experiences that matter. Let's build something amazing together.
             </p>
