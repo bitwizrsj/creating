@@ -99,8 +99,7 @@ const TestimonialSlider = () => {
                   alt={testimonials[currentIndex].personName}
                   className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-lg"
                 />
-                <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md">
-                </div>
+                
               </div>
               <div>
                 <h3 className="font-medium text-gray-900">

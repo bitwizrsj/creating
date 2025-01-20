@@ -73,8 +73,15 @@ const Footer = () => {
                 href="mailto:hello@creating.com" 
                 className="text-gray-400 hover:text-white transition-colors block"
               >
-                hello@creating.com
+                info@hypernextechnologies.com
               </a>
+              <div>
+                <p className="text-gray-400">Phone: <a href="tel:+1234567890" className="hover:text-white transition-colors">+1 307-213-1361</a></p>
+              </div>
+              <div>
+                <p className="text-gray-400">Address: 30 N Gould St Ste R,
+                Sheridan, WY 82801, USA</p>
+              </div>
               <button 
                 className="bg-white text-gray-950 px-6 py-3 rounded-full hover:bg-gray-200 transition-colors flex items-center group"
               >

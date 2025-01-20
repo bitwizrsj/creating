@@ -8,56 +8,56 @@ const ServicesLayout = () => {
       name: "App Development", 
       icon: TabletSmartphone,
       x: 20, // Left side
-      y: 30,
+      y: 40,
       delay: 0.2
     },
     { 
       name: "Website Development", 
       icon: Globe,
-      x: 75, // Right side
-      y: 25,
+      x: 65, // Right side
+      y: 35,
       delay: 0.4
     },
     { 
       name: "UI/UX Design", 
       icon: Palette,
-      x: 30, // Left-center
-      y: 65,
+      x: 25, // Left-center
+      y: 75,
       delay: 0.6
     },
     { 
       name: "E-Commerce Solutions", 
       icon: ShoppingCart,
       x: 65, // Right-center
-      y: 70,
+      y: 80,
       delay: 0.8
     },
     { 
       name: "SEO Optimization", 
       icon: Search,
-      x: 50, // Center
-      y: 45,
+      x: 40, // Center
+      y: 55,
       delay: 1.0
     },
     { 
       name: "Digital Marketing", 
       icon: Megaphone,
-      x: 85, // Far right
-      y: 50,
+      x: 70, // Far right
+      y: 60,
       delay: 1.2
     },
     { 
       name: "Web Hosting", 
       icon: Server,
-      x: 15, // Far left
-      y: 50,
+      x: 10, // Far left
+      y: 60,
       delay: 1.4
     },
     { 
       name: "Maintenance & Support", 
       icon: Settings,
       x: 45, // Center-left
-      y: 20,
+      y: 30,
       delay: 1.6
     }
   ];
@@ -91,7 +91,7 @@ const ServicesLayout = () => {
       </div>
 
       {/* Heading */}
-      <div className="absolute top-8 p-5 text-7xl text-gray-600 hover:text-gray-50 font-semibold">
+      <div className="absolute top-8 p-5 text-5xl sm:text-6xl md:text-7xl text-gray-600 hover:text-gray-50 font-semibold">
         <h1>Our Services</h1>
       </div>
 
@@ -99,7 +99,7 @@ const ServicesLayout = () => {
       <div className="relative w-full h-full">
         {services.map((service, index) => {
           const Icon = service.icon;
-          
+
           return (
             <div
               key={index}
@@ -121,7 +121,7 @@ const ServicesLayout = () => {
               }}
             >
               <Icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 mb-1 transition-colors duration-300" />
-              <span className="text-sm text-gray-300 group-hover:text-white transition-all duration-300">
+              <span className="text-sm text-gray-300 group-hover:text-white transition-all duration-300 service-name">
                 {service.name}
               </span>
             </div>
@@ -186,6 +186,58 @@ const ServicesLayout = () => {
           to {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
+          }
+        }
+
+        /* For mobile */
+        @media (max-width: 768px) {
+          .service-name {
+            font-size: 0.875rem; /* Smaller font for mobile devices */
+          }
+
+          .group:hover .service-name {
+            font-size: 0.75rem; /* Even smaller text on hover */
+          }
+
+          .group:hover .w-6 {
+            width: 4rem;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .relative {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+          }
+
+          .absolute {
+            position: relative;
+            margin: 0 10px;
+            left: auto !important;
+            top: auto !important;
+            transform: none !important;
+            opacity: 1 !important;
+            animation: none !important;
+            width: 250px;
+            height: auto;
+          }
+
+          .service-name {
+            font-size: 0.875rem; /* Smaller font size */
+          }
+
+          .group:hover .service-name {
+            font-size: 0.75rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .service-name {
+            font-size: 0.75rem;
           }
         }
       `}</style>

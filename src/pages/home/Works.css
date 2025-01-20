@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+
+    .dog {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Hide scrollbar on WebKit browsers (Chrome, Safari, Edge) */
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar on Firefox */
+  }
+  

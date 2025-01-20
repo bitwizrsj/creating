@@ -191,7 +191,7 @@ const DarkCareersSection = () => {
                 >
                     <button 
                         ref={buttonRef}
-                        className="group relative inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-medium overflow-hidden hover:bg-yellow-300 transition-colors duration-300"
+                        className="group relative inline-flex items-center gap-2 bg-yellow-400 text-gray-900 md:px-8 px-6 py-4 rounded-full text-lg font-medium overflow-hidden hover:bg-yellow-300 transition-colors duration-300"
                         onClick={() => window.location.href = '/careers'}
                     >
                         Explore Opportunities
